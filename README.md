@@ -1,2 +1,0 @@
-# labsense-dashboard
-LabSense Dashboard
