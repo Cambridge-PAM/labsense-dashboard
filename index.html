@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Labsense Analytics Dashboard</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+    .header { background: white; border-radius: 10px; padding: 30px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .header h1 { margin: 0 0 10px 0; color: #333; }
+    .header p { margin: 0; color: #666; }
+    .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+    .dashboard-card { background: white; border-radius: 10px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; display: block; }
+    .dashboard-card:hover { transform: translateY(-5px); box-shadow: 0 8px 12px rgba(0,0,0,0.15); }
+    .dashboard-card h2 { margin: 0 0 10px 0; color: #667eea; font-size: 1.3em; }
+    .dashboard-card p { margin: 0; color: #666; font-size: 0.9em; }
+    .dashboard-card .arrow { float: right; color: #667eea; font-size: 1.5em; }
+    .footer { text-align: center; color: white; margin-top: 40px; font-size: 0.9em; }
+    .no-dashboards { background: white; border-radius: 10px; padding: 30px; text-align: center; color: #666; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🔬 Labsense Analytics Dashboard</h1>
+      <p>Laboratory management and monitoring system • Generated 2026-02-12 15:14:05</p>
+    </div>
+    <div class="dashboard-grid">
+      <a href="cheminventory_dashboard.html" class="dashboard-card">
+        <span class="arrow">→</span>
+        <h2>Cheminventory</h2>
+        <p>View detailed cheminventory analytics and reports</p>
+      </a>
+      <a href="electricity_dashboard.html" class="dashboard-card">
+        <span class="arrow">→</span>
+        <h2>Electricity</h2>
+        <p>View detailed electricity analytics and reports</p>
+      </a>
+      <a href="fumehood_dashboard.html" class="dashboard-card">
+        <span class="arrow">→</span>
+        <h2>Fumehood</h2>
+        <p>View detailed fumehood analytics and reports</p>
+      </a>
+      <a href="Waste_dashboard.html" class="dashboard-card">
+        <span class="arrow">→</span>
+        <h2>Waste</h2>
+        <p>View detailed waste analytics and reports</p>
+      </a>
+      <a href="water_dashboard.html" class="dashboard-card">
+        <span class="arrow">→</span>
+        <h2>Water</h2>
+        <p>View detailed water analytics and reports</p>
+      </a>
+    </div>
+    <div class="footer">
+      <p>Labsense • University of Cambridge</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Electricity Consumption Dashboard</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 20px; background: #f5f5f5; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    .header { background: white; border-radius: 10px; padding: 30px; margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .header h1 { margin: 0 0 10px 0; color: #2c3e50; }
+    .header p { margin: 0; color: #7f8c8d; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
+    .stat-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .stat-card.yellow { background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); }
+    .stat-card.orange { background: linear-gradient(135deg, #e67e22 0%, #d35400 100%); }
+    .stat-card.green { background: linear-gradient(135deg, #27ae60 0%, #229954 100%); }
+    .stat-card.red { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); }
+    .stat-card.teal { background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%); }
+    .stat-card h3 { margin: 0 0 5px 0; font-size: 0.9em; opacity: 0.9; }
+    .stat-card .value { font-size: 2em; font-weight: bold; }
+    .stat-card .unit { font-size: 0.8em; opacity: 0.9; }
+    .stat-card .subtext { font-size: 0.75em; opacity: 0.8; margin-top: 5px; }
+    .section { background: white; border-radius: 10px; padding: 25px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .section h2 { margin: 0 0 20px 0; color: #34495e; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+    .section h3 { margin: 20px 0 10px 0; color: #34495e; }
+    img { max-width: 100%; height: auto; border-radius: 8px; margin: 15px 0; }
+    table { border-collapse: collapse; width: 100%; margin-top: 15px; }
+    th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+    th { background: #3498db; color: white; font-weight: 600; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    tr:hover { background: #ecf0f1; }
+    .summary { background: #ecf0f1; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+    .summary h3 { margin: 0 0 10px 0; color: #2c3e50; }
+    .summary p { margin: 5px 0; color: #34495e; }
+    .no-data { text-align: center; color: #7f8c8d; padding: 40px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>⚡ Electricity Consumption Dashboard</h1>
+      <p>Daily electricity usage monitoring and analysis • Generated 2026-07-17 08:32:45</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Consumption</h3>
+        <div class="value">37365.7</div>
+        <div class="unit">kWh</div>
+        <div class="subtext">Over 605 days</div>
+      </div>
+      <div class="stat-card yellow">
+        <h3>Average Daily</h3>
+        <div class="value">61.8</div>
+        <div class="unit">kWh/day</div>
+      </div>
+      <div class="stat-card red">
+        <h3>Peak Consumption</h3>
+        <div class="value">108.6</div>
+        <div class="unit">kWh</div>
+        <div class="subtext">2025-02-12</div>
+      </div>
+      <div class="stat-card green">
+        <h3>Consumption Trend</h3>
+        <div class="value">-15.6%</div>
+        <div class="unit">linear-fit change</div>
+        <div class="subtext">from 2025-07-18 to 2026-07-16</div>
+      </div>
+      <div class="stat-card orange">
+        <h3>Idle Power Percentage</h3>
+        <div class="value">91.2%</div>
+        <div class="unit">of 7-day consumption</div>
+      </div>
+      <div class="stat-card teal">
+        <h3>Active Power Use</h3>
+        <div class="value">36.0</div>
+        <div class="unit">kWh over 7 days</div>
+        <div class="subtext">8.8% of 7-day consumption</div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Day View</h2>
+      <div class="summary">
+        <p><strong>Date:</strong> 2026-07-16</p>
+        <p><strong>Consumption:</strong> 63.5 kWh</p>
+        <p><strong>Change vs previous recorded day:</strong> -0.1 kWh</p>
+      </div>
+      <img src="electricity_consumption_previous_day.png" alt="Previous day power consumption" />
+      <h3>Presence vs Delta Clusters</h3>
+      <p><em>Points are local extrema above the noise threshold. Up/down markers indicate positive/negative deltas; color and label indicate DBSCAN clusters built from both delta magnitude and lab presence.</em></p>
+      <img src="electricity_consumption_previous_day_cluster_presence_delta.png" alt="Presence vs delta DBSCAN clusters" />
+    </div>
+    <div class="section">
+      <h2>Week View</h2>
+      <div class="summary">
+        <p><strong>Idle Power (1am-5am average):</strong> 2.22 kW</p>
+        <p>The graph shows average power (kW) calculated from minute-level energy consumption data (kWh).</p>
+        <p>Total power and active power (with idle power subtracted) help identify when equipment is actively being used vs. baseline consumption.</p>
+      </div>
+      <img src="electricity_consumption_granular.png" alt="Minute-level power consumption" />
+      <h3>Energy Equivalents (Average Daily)</h3>
+      <div class="summary">
+        <p>Based on average daily consumption of <strong>61.8 kWh/day</strong></p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card teal">
+          <h3>Kettles Boiled</h3>
+          <div class="value">617.6</div>
+          <div class="unit">full kettles per day</div>
+        </div>
+        <div class="stat-card">
+          <h3>EV Miles</h3>
+          <div class="value">185.3</div>
+          <div class="unit">miles per day</div>
+        </div>
+        <div class="stat-card yellow">
+          <h3>Blue Whale Lifts</h3>
+          <div class="value">150.6</div>
+          <div class="unit">1 m lifts per day</div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Month View</h2>
+      <h3>Daily Consumption Trends</h3>
+      <img src="electricity_consumption_trends.png" alt="Daily electricity consumption trends" />
+      <h3>Monthly Consumption</h3>
+      <img src="electricity_consumption_monthly.png" alt="Monthly electricity consumption" />
+      <h3>Average Daily Consumption</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Average Daily Consumption (kWh)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2024-11</td><td>64.28</td></tr>
+          <tr><td>2024-12</td><td>50.05</td></tr>
+          <tr><td>2025-01</td><td>57.18</td></tr>
+          <tr><td>2025-02</td><td>75.56</td></tr>
+          <tr><td>2025-03</td><td>78.68</td></tr>
+          <tr><td>2025-04</td><td>71.18</td></tr>
+          <tr><td>2025-05</td><td>67.99</td></tr>
+          <tr><td>2025-06</td><td>70.45</td></tr>
+          <tr><td>2025-07</td><td>62.35</td></tr>
+          <tr><td>2025-08</td><td>64.30</td></tr>
+          <tr><td>2025-09</td><td>62.72</td></tr>
+          <tr><td>2025-10</td><td>63.29</td></tr>
+          <tr><td>2025-11</td><td>65.87</td></tr>
+          <tr><td>2025-12</td><td>53.35</td></tr>
+          <tr><td>2026-01</td><td>52.74</td></tr>
+          <tr><td>2026-02</td><td>54.18</td></tr>
+          <tr><td>2026-03</td><td>55.71</td></tr>
+          <tr><td>2026-04</td><td>48.68</td></tr>
+          <tr><td>2026-05</td><td>54.46</td></tr>
+          <tr><td>2026-06</td><td>60.26</td></tr>
+          <tr><td>2026-07</td><td>59.84</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

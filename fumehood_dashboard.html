@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Fumehood Dashboard</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 20px; background: #f5f5f5; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    .header { background: white; border-radius: 10px; padding: 30px; margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .header h1 { margin: 0 0 10px 0; color: #2c3e50; }
+    .header p { margin: 0; color: #7f8c8d; }
+    .lab-section { background: white; border-radius: 10px; padding: 25px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .lab-section h2 { margin: 0 0 20px 0; color: #34495e; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+    .stat-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; }
+    .stat-card.distance { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); }
+    .stat-card.light { background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); }
+    .stat-card h3 { margin: 0 0 5px 0; font-size: 0.9em; opacity: 0.9; }
+    .stat-card .value { font-size: 2em; font-weight: bold; }
+    .stat-card .unit { font-size: 0.8em; opacity: 0.9; }
+    img { max-width: 100%; height: auto; border-radius: 8px; margin: 15px 0; }
+    table { border-collapse: collapse; width: 100%; margin-top: 15px; }
+    th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+    th { background: #3498db; color: white; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    .summary { background: #ecf0f1; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+    .summary h3 { margin: 0 0 10px 0; color: #2c3e50; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>💨 Fumehood Monitoring Dashboard</h1>
+      <p>Real-time sash height and light level monitoring • Generated 2026-07-17 08:32:51</p>
+    </div>
+    <div class="lab-section">
+      <h2>Fumehood 3 (Lab -1.025)</h2>
+      <div class="summary">
+        <h3>Latest Reading (2026-07-17 08:32:07)</h3>
+        <p><strong>Sash Opening:</strong> 0.8% | <strong>Light Level:</strong> 23.71 lux | <strong>Airflow:</strong> 0.00 CFM</p>
+        <p><strong>Data Quality:</strong> 6459 distance error(s) and 408 light error(s) detected and excluded from analysis</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card light">
+          <h3>Lab Presence</h3>
+          <div class="value">18.9</div>
+          <div class="unit">hrs/week</div>
+        </div>
+        <div class="stat-card distance">
+          <h3>Avg Sash Opening</h3>
+          <div class="value">26.1</div>
+          <div class="unit">%</div>
+        </div>
+        <div class="stat-card light">
+          <h3>Sash Open</h3>
+          <div class="value">1.2</div>
+          <div class="unit">hrs/day</div>
+        </div>
+        <div class="stat-card light">
+          <h3>Fumehood Light On</h3>
+          <div class="value">0.0</div>
+          <div class="unit">hrs/day</div>
+        </div>
+        <div class="stat-card light">
+          <h3>Unattended Hood Open</h3>
+          <div class="value">1.8</div>
+          <div class="unit">hrs/day</div>
+        </div>
+      </div>
+      <img src="fumehood_lab1_sublab3.png" alt="Fumehood 3 (Lab -1.025) trends" />
+      <h3>Recent History (Last 10 Records)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Distance (mm)</th>
+            <th>Light (lux)</th>
+            <th>Airflow (CFM)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2026-07-17 08:32:07</td><td>760.00</td><td>23.71</td><td>0.00</td></tr>
+          <tr><td>2026-07-17 08:31:35</td><td>760.00</td><td>23.71</td><td>0.00</td></tr>
+          <tr><td>2026-07-17 08:31:03</td><td>759.00</td><td>23.71</td><td>0.00</td></tr>
+          <tr><td>2026-07-17 08:30:30</td><td>760.00</td><td>23.71</td><td>0.00</td></tr>
+          <tr><td>2026-07-17 08:29:48</td><td>759.00</td><td>23.71</td><td>0.00</td></tr>
+          <tr><td>2026-07-17 08:29:16</td><td>760.00</td><td>23.71</td><td>0.00</td></tr>
+          <tr><td>2026-07-17 08:28:43</td><td>760.00</td><td>23.71</td><td>0.00</td></tr>
+          <tr><td>2026-07-17 08:28:11</td><td>760.00</td><td>23.71</td><td>0.00</td></tr>
+          <tr><td>2026-07-17 08:27:39</td><td>759.00</td><td>22.68</td><td>0.00</td></tr>
+          <tr><td>2026-07-17 08:27:07</td><td>760.00</td><td>22.68</td><td>0.00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

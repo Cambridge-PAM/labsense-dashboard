@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Waste Dashboard</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 20px; background: #f5f5f5; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    .header { background: white; border-radius: 10px; padding: 30px; margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .header h1 { margin: 0 0 10px 0; color: #2c3e50; }
+    .header p { margin: 0; color: #7f8c8d; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 25px; }
+    .stat-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .stat-card.orange { background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); }
+    .stat-card.teal { background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%); }
+    .stat-card h3 { margin: 0 0 5px 0; font-size: 0.9em; opacity: 0.9; }
+    .stat-card .value { font-size: 2em; font-weight: bold; }
+    .stat-card .unit { font-size: 0.8em; opacity: 0.9; }
+    .section { background: white; border-radius: 10px; padding: 25px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .section h2 { margin: 0 0 20px 0; color: #34495e; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+    .section h3 { margin: 20px 0 10px 0; color: #34495e; }
+    img { max-width: 100%; height: auto; border-radius: 8px; margin: 15px 0; }
+    table { border-collapse: collapse; width: 100%; margin-top: 15px; }
+    th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+    th { background: #3498db; color: white; font-weight: 600; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    tr:hover { background: #ecf0f1; }
+    .summary { background: #ecf0f1; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+    .summary h3 { margin: 0 0 10px 0; color: #2c3e50; }
+    .summary p { margin: 5px 0; color: #34495e; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>♻️ Waste Dashboard</h1>
+      <p>Hazardous waste tracking and analysis by HP code allocation • Generated 2026-06-03 18:07:35</p>
+      <div class="summary" style="margin-top: 20px;">
+        <h3>About This Dashboard</h3>
+        <p>This dashboard tracks hazardous waste volumes received and their allocation across EU hazard property codes (HP1-HP15). Each waste entry may be designated with multiple HP codes if it exhibits multiple hazardous properties.</p>
+        <p><strong>Key Concept:</strong> The <em>Total Volume</em> charts show the actual waste received (unduplicated). The <em>Allocation Breakdown</em> charts show what percentage of that waste was assigned to each HP code. A single waste entry may appear in multiple HP code allocations.</p>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>Total Volume</h3>
+        <div class="value">1044.1</div>
+        <div class="unit">Litres</div>
+      </div>
+      <div class="stat-card orange">
+        <h3>Most Common HP Code</h3>
+        <div class="value">HP4</div>
+        <div class="unit">238.6 L</div>
+      </div>
+      <div class="stat-card teal">
+        <h3>Total HP Codes</h3>
+        <div class="value">15</div>
+        <div class="unit">Categories</div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Hazard Property (HP) Codes Reference</h2>
+      <div class="summary">
+        <p>HP codes classify hazardous properties of waste according to European Waste Framework Directive.</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style='width: 80px;'>Code</th>
+            <th style='width: 200px;'>Property</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>HP1</strong></td><td>Explosive</td><td>Waste which is capable by chemical reaction of producing gas at such a temperature and pressure and at such a speed as to cause damage to the surroundings. Pyrotechnic waste, explosive organic peroxide waste and explosive self-reactive waste is included.</td></tr>
+          <tr><td><strong>HP2</strong></td><td>Oxidizing</td><td>Waste which may, generally by providing oxygen, cause or contribute to the combustion of other materials.</td></tr>
+          <tr><td><strong>HP3</strong></td><td>Flammable</td><td>Flammable liquid waste (flash point below 60°C); flammable pyrophoric liquid/solid waste; flammable solid waste; flammable gaseous waste; water reactive waste; or flammable aerosols, self-heating waste, organic peroxides and self-reactive waste.</td></tr>
+          <tr><td><strong>HP4</strong></td><td>Irritant</td><td>Waste which on application can cause skin irritation or damage to the eye.</td></tr>
+          <tr><td><strong>HP5</strong></td><td>Harmful</td><td>Waste which can cause specific target organ toxicity either from a single or repeated exposure, or which cause acute toxic effects following aspiration.</td></tr>
+          <tr><td><strong>HP6</strong></td><td>Toxic</td><td>Waste which can cause acute toxic effects following oral or dermal administration, or inhalation exposure.</td></tr>
+          <tr><td><strong>HP7</strong></td><td>Carcinogenic</td><td>Waste which induces cancer or increases its incidence.</td></tr>
+          <tr><td><strong>HP8</strong></td><td>Corrosive</td><td>Waste which on application, can cause skin corrosion.</td></tr>
+          <tr><td><strong>HP9</strong></td><td>Infectious</td><td>Waste containing viable micro-organisms or their toxins which are known or reliably believed to cause disease in man or other living organisms.</td></tr>
+          <tr><td><strong>HP10</strong></td><td>Toxic for reproduction</td><td>Waste which has adverse effects on sexual function and fertility in adult males and females, as well as developmental toxicity in the offspring.</td></tr>
+          <tr><td><strong>HP11</strong></td><td>Mutagenic</td><td>Waste which may cause a mutation, that is a permanent change in the amount or structure of the genetic material in a cell.</td></tr>
+          <tr><td><strong>HP12</strong></td><td>Release of an acute toxic gas</td><td>Waste which releases acute toxic gases (Acute Tox. 1, 2 or 3) in contact with water or an acid.</td></tr>
+          <tr><td><strong>HP13</strong></td><td>Sensitizing</td><td>Waste which contains one or more substances known to cause sensitising effects to the skin or the respiratory organs.</td></tr>
+          <tr><td><strong>HP14</strong></td><td>Ecotoxic</td><td>Waste which presents or may present immediate or delayed risks for one or more sectors of the environment.</td></tr>
+          <tr><td><strong>HP15</strong></td><td>Waste capable of exhibiting a hazardous property</td><td>Waste capable of exhibiting a hazardous property listed above not directly displayed by the original waste.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section">
+      <h2>Quarterly Analysis</h2>
+      <div class="summary">
+        <h3>Understanding the Charts</h3>
+        <p><strong>Total Volume Chart:</strong> Shows the actual waste volume received each quarter (unduplicated).</p>
+        <p><strong>Allocation Breakdown Chart:</strong> Shows what percentage of the total waste was allocated to each HP code. Note: A single waste entry may be attributed to multiple HP codes if it exhibits multiple hazardous properties.</p>
+      </div>
+      <h3>Total Waste Volume by Quarter</h3>
+      <img src="Waste_total_by_quarter.png" alt="Total waste volume by quarter" />
+      <h3>HP Code Allocation Breakdown by Quarter</h3>
+      <img src="Waste_by_quarter_stacked.png" alt="HP allocation by quarter" />
+      <h3>Quarterly Totals</h3>
+      <table>
+        <thead>
+          <tr><th>Quarter</th><th>Volume (L)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>2019Q4</td><td>21.500</td></tr>
+          <tr><td>2020Q1</td><td>64.125</td></tr>
+          <tr><td>2020Q3</td><td>26.000</td></tr>
+          <tr><td>2020Q4</td><td>21.500</td></tr>
+          <tr><td>2021Q1</td><td>77.000</td></tr>
+          <tr><td>2021Q2</td><td>30.000</td></tr>
+          <tr><td>2021Q3</td><td>38.000</td></tr>
+          <tr><td>2021Q4</td><td>66.750</td></tr>
+          <tr><td>2022Q1</td><td>27.312</td></tr>
+          <tr><td>2022Q2</td><td>88.925</td></tr>
+          <tr><td>2022Q3</td><td>35.375</td></tr>
+          <tr><td>2022Q4</td><td>29.400</td></tr>
+          <tr><td>2023Q1</td><td>83.950</td></tr>
+          <tr><td>2023Q2</td><td>47.950</td></tr>
+          <tr><td>2023Q4</td><td>98.000</td></tr>
+          <tr><td>2024Q1</td><td>47.131</td></tr>
+          <tr><td>2024Q2</td><td>15.325</td></tr>
+          <tr><td>2024Q3</td><td>7.500</td></tr>
+          <tr><td>2024Q4</td><td>20.000</td></tr>
+          <tr><td>2025Q1</td><td>46.000</td></tr>
+          <tr><td>2025Q2</td><td>43.500</td></tr>
+          <tr><td>2025Q3</td><td>38.000</td></tr>
+          <tr><td>2025Q4</td><td>47.625</td></tr>
+          <tr><td>2026Q2</td><td>23.225</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section">
+      <h2>Annual Analysis</h2>
+      <h3>Total Waste Volume by Year</h3>
+      <img src="Waste_total_by_year.png" alt="Total waste volume by year" />
+      <h3>HP Code Allocation Breakdown by Year</h3>
+      <img src="Waste_by_year_stacked.png" alt="HP allocation by year" />
+      <h3>Annual Totals</h3>
+      <table>
+        <thead>
+          <tr><th>Year</th><th>Volume (L)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>2019</td><td>21.500</td></tr>
+          <tr><td>2020</td><td>111.625</td></tr>
+          <tr><td>2021</td><td>211.750</td></tr>
+          <tr><td>2022</td><td>181.012</td></tr>
+          <tr><td>2023</td><td>229.900</td></tr>
+          <tr><td>2024</td><td>89.956</td></tr>
+          <tr><td>2025</td><td>175.125</td></tr>
+          <tr><td>2026</td><td>23.225</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section">
+      <h2>Detailed Data by HP Code</h2>
+      <div class="summary">
+        <h3>How Waste is Allocated to HP Codes</h3>
+        <p>Each waste entry in the master ledger specifies quantities for one or more HP codes. The table below shows the allocated volumes per HP code per date. Note that a single waste entry may appear across multiple HP columns if it exhibits multiple hazardous properties. The sum of all HP columns for a given date represents the total waste volume for that date (with potential fractional allocations if a single entry was split across codes).</p>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Date</th>
+            <th>HP1</th>
+            <th>HP10</th>
+            <th>HP11</th>
+            <th>HP12</th>
+            <th>HP13</th>
+            <th>HP14</th>
+            <th>HP15</th>
+            <th>HP2</th>
+            <th>HP3</th>
+            <th>HP4</th>
+            <th>HP5</th>
+            <th>HP6</th>
+            <th>HP7</th>
+            <th>HP8</th>
+            <th>HP9</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2019-12-09</td>
+            <td>0.000</td>
+            <td>1.500</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.000</td>
+            <td>1.833</td>
+            <td>3.833</td>
+            <td>1.500</td>
+            <td>0.500</td>
+            <td>10.333</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2020-01-14</td>
+            <td>0.000</td>
+            <td>0.857</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.857</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>4.190</td>
+            <td>3.982</td>
+            <td>3.982</td>
+            <td>4.815</td>
+            <td>1.482</td>
+            <td>5.833</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2020-01-16</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.500</td>
+            <td>5.500</td>
+            <td>5.500</td>
+            <td>0.500</td>
+            <td>0.000</td>
+            <td>5.500</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2020-01-20</td>
+            <td>0.000</td>
+            <td>0.357</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.357</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.357</td>
+            <td>6.347</td>
+            <td>6.347</td>
+            <td>0.513</td>
+            <td>0.357</td>
+            <td>5.990</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2020-08-18</td>
+            <td>0.000</td>
+            <td>1.333</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.833</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>2.708</td>
+            <td>6.833</td>
+            <td>6.833</td>
+            <td>1.958</td>
+            <td>0.500</td>
+            <td>5.000</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2020-10-29</td>
+            <td>0.000</td>
+            <td>2.214</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.714</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.714</td>
+            <td>5.214</td>
+            <td>4.714</td>
+            <td>2.214</td>
+            <td>2.214</td>
+            <td>3.500</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2021-01-19</td>
+            <td>0.000</td>
+            <td>1.833</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.833</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>2.833</td>
+            <td>6.000</td>
+            <td>6.000</td>
+            <td>3.833</td>
+            <td>1.000</td>
+            <td>3.667</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2021-03-03</td>
+            <td>0.000</td>
+            <td>3.190</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.190</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.190</td>
+            <td>6.024</td>
+            <td>10.024</td>
+            <td>3.524</td>
+            <td>2.357</td>
+            <td>2.500</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2021-03-30</td>
+            <td>0.000</td>
+            <td>1.667</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.417</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.042</td>
+            <td>3.250</td>
+            <td>6.167</td>
+            <td>4.917</td>
+            <td>2.917</td>
+            <td>0.625</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2021-06-14</td>
+            <td>0.000</td>
+            <td>1.417</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.417</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>4.583</td>
+            <td>6.000</td>
+            <td>8.083</td>
+            <td>3.083</td>
+            <td>1.417</td>
+            <td>5.000</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2021-07-19</td>
+            <td>0.000</td>
+            <td>2.250</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.250</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.250</td>
+            <td>4.750</td>
+            <td>4.750</td>
+            <td>2.917</td>
+            <td>1.000</td>
+            <td>0.833</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2021-08-18</td>
+            <td>0.000</td>
+            <td>1.833</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.833</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.833</td>
+            <td>4.833</td>
+            <td>4.833</td>
+            <td>3.167</td>
+            <td>1.000</td>
+            <td>1.667</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2021-10-07</td>
+            <td>0.000</td>
+            <td>4.786</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.786</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.786</td>
+            <td>12.619</td>
+            <td>12.619</td>
+            <td>7.619</td>
+            <td>4.786</td>
+            <td>5.000</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2021-11-17</td>
+            <td>0.000</td>
+            <td>1.214</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.714</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.214</td>
+            <td>2.381</td>
+            <td>2.881</td>
+            <td>2.881</td>
+            <td>1.214</td>
+            <td>0.000</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2021-12-08</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.250</td>
+            <td>0.000</td>
+            <td>0.250</td>
+            <td>0.250</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>2.500</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2022-01-22</td>
+            <td>0.000</td>
+            <td>0.500</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.333</td>
+            <td>1.646</td>
+            <td>0.500</td>
+            <td>0.500</td>
+            <td>0.833</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2022-02-15</td>
+            <td>0.000</td>
+            <td>0.488</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.488</td>
+            <td>0.000</td>
+            <td>0.200</td>
+            <td>4.071</td>
+            <td>5.521</td>
+            <td>5.521</td>
+            <td>1.855</td>
+            <td>0.655</td>
+            <td>3.200</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2022-04-19</td>
+            <td>0.000</td>
+            <td>1.071</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.071</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>3.571</td>
+            <td>7.769</td>
+            <td>7.769</td>
+            <td>1.853</td>
+            <td>1.071</td>
+            <td>2.948</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2022-04-29</td>
+            <td>0.000</td>
+            <td>1.690</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.190</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>5.024</td>
+            <td>10.632</td>
+            <td>10.732</td>
+            <td>4.965</td>
+            <td>2.190</td>
+            <td>5.375</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2022-06-14</td>
+            <td>0.000</td>
+            <td>2.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.667</td>
+            <td>5.333</td>
+            <td>5.333</td>
+            <td>2.000</td>
+            <td>2.000</td>
+            <td>1.667</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2022-07-14</td>
+            <td>0.000</td>
+            <td>0.857</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.357</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>2.024</td>
+            <td>3.357</td>
+            <td>3.357</td>
+            <td>0.857</td>
+            <td>0.857</td>
+            <td>0.833</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2022-08-01</td>
+            <td>0.000</td>
+            <td>0.357</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.357</td>
+            <td>0.000</td>
+            <td>0.125</td>
+            <td>5.024</td>
+            <td>5.857</td>
+            <td>5.940</td>
+            <td>0.649</td>
+            <td>0.440</td>
+            <td>4.125</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2022-11-09</td>
+            <td>0.000</td>
+            <td>0.767</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.367</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>5.200</td>
+            <td>7.833</td>
+            <td>7.833</td>
+            <td>1.833</td>
+            <td>0.400</td>
+            <td>5.167</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2023-01-09</td>
+            <td>0.000</td>
+            <td>1.133</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.333</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>2.333</td>
+            <td>5.383</td>
+            <td>5.383</td>
+            <td>2.383</td>
+            <td>0.800</td>
+            <td>1.250</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2023-02-06</td>
+            <td>0.000</td>
+            <td>0.733</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.333</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>6.458</td>
+            <td>11.025</td>
+            <td>11.025</td>
+            <td>3.525</td>
+            <td>0.692</td>
+            <td>6.958</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2023-03-20</td>
+            <td>0.000</td>
+            <td>1.783</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>1.283</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>2.950</td>
+            <td>6.117</td>
+            <td>6.117</td>
+            <td>2.783</td>
+            <td>0.750</td>
+            <td>2.417</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2023-05-03</td>
+            <td>0.000</td>
+            <td>1.833</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.833</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>8.125</td>
+            <td>12.958</td>
+            <td>12.958</td>
+            <td>3.167</td>
+            <td>2.250</td>
+            <td>5.825</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2023-10-03</td>
+            <td>0.000</td>
+            <td>4.708</td>
+            <td>0.625</td>
+            <td>0.000</td>
+            <td>2.500</td>
+            <td>5.208</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>15.833</td>
+            <td>14.208</td>
+            <td>9.708</td>
+            <td>3.875</td>
+            <td>4.708</td>
+            <td>8.125</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2023-12-05</td>
+            <td>0.000</td>
+            <td>1.667</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.417</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>3.542</td>
+            <td>8.292</td>
+            <td>4.792</td>
+            <td>2.500</td>
+            <td>0.417</td>
+            <td>6.875</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2024-03-06</td>
+            <td>0.000</td>
+            <td>1.503</td>
+            <td>0.000</td>
+            <td>0.020</td>
+            <td>0.000</td>
+            <td>1.503</td>
+            <td>0.312</td>
+            <td>0.000</td>
+            <td>7.336</td>
+            <td>11.231</td>
+            <td>6.231</td>
+            <td>10.580</td>
+            <td>1.503</td>
+            <td>6.911</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2024-05-09</td>
+            <td>0.000</td>
+            <td>0.312</td>
+            <td>0.312</td>
+            <td>0.000</td>
+            <td>0.312</td>
+            <td>1.042</td>
+            <td>0.312</td>
+            <td>0.000</td>
+            <td>2.325</td>
+            <td>2.400</td>
+            <td>1.117</td>
+            <td>6.042</td>
+            <td>0.625</td>
+            <td>0.525</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2024-08-14</td>
+            <td>0.000</td>
+            <td>0.357</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.357</td>
+            <td>0.000</td>
+            <td>0.857</td>
+            <td>0.857</td>
+            <td>3.357</td>
+            <td>0.857</td>
+            <td>0.357</td>
+            <td>0.500</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2024-11-21</td>
+            <td>0.000</td>
+            <td>0.714</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.714</td>
+            <td>0.000</td>
+            <td>4.339</td>
+            <td>4.339</td>
+            <td>1.214</td>
+            <td>4.339</td>
+            <td>0.714</td>
+            <td>3.625</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2025-03-25</td>
+            <td>0.000</td>
+            <td>3.576</td>
+            <td>0.278</td>
+            <td>0.000</td>
+            <td>0.278</td>
+            <td>5.264</td>
+            <td>1.319</td>
+            <td>0.000</td>
+            <td>5.493</td>
+            <td>10.493</td>
+            <td>5.160</td>
+            <td>4.493</td>
+            <td>2.826</td>
+            <td>6.819</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2025-04-15</td>
+            <td>0.000</td>
+            <td>1.777</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.750</td>
+            <td>1.777</td>
+            <td>0.750</td>
+            <td>0.312</td>
+            <td>7.902</td>
+            <td>11.652</td>
+            <td>2.902</td>
+            <td>6.777</td>
+            <td>2.214</td>
+            <td>6.688</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2025-07-25</td>
+            <td>0.000</td>
+            <td>3.021</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.278</td>
+            <td>2.799</td>
+            <td>0.278</td>
+            <td>0.312</td>
+            <td>6.299</td>
+            <td>5.924</td>
+            <td>6.299</td>
+            <td>7.090</td>
+            <td>1.611</td>
+            <td>4.090</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2025-10-31</td>
+            <td>0.000</td>
+            <td>2.048</td>
+            <td>0.417</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>2.360</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>7.298</td>
+            <td>7.798</td>
+            <td>7.881</td>
+            <td>8.548</td>
+            <td>1.131</td>
+            <td>10.146</td>
+            <td>0.000</td>
+          </tr>
+          <tr><td>2026-05-15</td>
+            <td>0.000</td>
+            <td>2.135</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>2.135</td>
+            <td>0.000</td>
+            <td>0.000</td>
+            <td>3.905</td>
+            <td>2.499</td>
+            <td>5.155</td>
+            <td>3.749</td>
+            <td>0.833</td>
+            <td>2.812</td>
+            <td>0.000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
