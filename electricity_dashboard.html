@@ -43,18 +43,18 @@
     <div class="top-nav"><a href="index.html" class="back-button">&larr; Back to Home</a></div>
     <div class="header">
       <h1>⚡ Electricity Consumption Dashboard</h1>
-      <p>Daily electricity usage monitoring and analysis • Generated 2026-07-20 08:41:29</p>
+      <p>Daily electricity usage monitoring and analysis • Generated 2026-07-20 09:31:36</p>
     </div>
     <div class="stats-grid">
       <div class="stat-card">
         <h3>Total Consumption</h3>
-        <div class="value">37365.7</div>
+        <div class="value">37537.4</div>
         <div class="unit">kWh</div>
-        <div class="subtext">Over 605 days</div>
+        <div class="subtext">Over 608 days</div>
       </div>
       <div class="stat-card yellow">
         <h3>Average Daily</h3>
-        <div class="value">61.8</div>
+        <div class="value">61.7</div>
         <div class="unit">kWh/day</div>
       </div>
       <div class="stat-card red">
@@ -65,52 +65,55 @@
       </div>
       <div class="stat-card green">
         <h3>Consumption Trend</h3>
-        <div class="value">-16.0%</div>
+        <div class="value">-15.8%</div>
         <div class="unit">linear-fit change</div>
-        <div class="subtext">from 2025-07-21 to 2026-07-16</div>
+        <div class="subtext">from 2025-07-21 to 2026-07-19</div>
       </div>
       <div class="stat-card orange">
         <h3>Idle Power Percentage</h3>
-        <div class="value">155.9%</div>
+        <div class="value">94.4%</div>
         <div class="unit">of 7-day consumption</div>
       </div>
       <div class="stat-card teal">
         <h3>Active Power Use</h3>
-        <div class="value">0.0</div>
+        <div class="value">22.3</div>
         <div class="unit">kWh over 7 days</div>
-        <div class="subtext">0.0% of 7-day consumption</div>
+        <div class="subtext">5.6% of 7-day consumption</div>
       </div>
     </div>
     <div class="section">
       <h2>Day View</h2>
       <div class="summary">
         <p><strong>Date:</strong> 2026-07-17</p>
-        <p><strong>Consumption:</strong> 0.0 kWh</p>
-        <p><strong>Change vs previous recorded day:</strong> +0.0 kWh</p>
+        <p><strong>Consumption:</strong> 61.9 kWh</p>
+        <p><strong>Change vs previous recorded day:</strong> -1.6 kWh</p>
       </div>
       <img src="electricity_consumption_previous_day.png" alt="Previous day power consumption" />
+      <h3>Presence vs Delta Clusters</h3>
+      <p><em>Points are local extrema above the noise threshold. Up/down markers indicate positive/negative deltas; color and label indicate DBSCAN clusters built from both delta magnitude and lab presence.</em></p>
+      <img src="electricity_consumption_previous_day_cluster_presence_delta.png" alt="Presence vs delta DBSCAN clusters" />
     </div>
     <div class="section">
       <h2>Week View</h2>
       <div class="summary">
-        <p><strong>Idle Power (1am-5am average):</strong> 2.15 kW</p>
+        <p><strong>Idle Power (1am-5am average):</strong> 2.23 kW</p>
         <p>The graph shows average power (kW) calculated from minute-level energy consumption data (kWh).</p>
         <p>Total power and active power (with idle power subtracted) help identify when equipment is actively being used vs. baseline consumption.</p>
       </div>
       <img src="electricity_consumption_granular.png" alt="Minute-level power consumption" />
       <h3>Energy Equivalents (Average Daily)</h3>
       <div class="summary">
-        <p>Based on average daily consumption of <strong>61.8 kWh/day</strong></p>
+        <p>Based on average daily consumption of <strong>61.7 kWh/day</strong></p>
       </div>
       <div class="stats-grid">
         <div class="stat-card teal">
           <h3>Kettles Boiled</h3>
-          <div class="value">617.6</div>
+          <div class="value">617.4</div>
           <div class="unit">full kettles per day</div>
         </div>
         <div class="stat-card">
           <h3>EV Miles</h3>
-          <div class="value">185.3</div>
+          <div class="value">185.2</div>
           <div class="unit">miles per day</div>
         </div>
         <div class="stat-card yellow">
@@ -155,7 +158,7 @@
           <tr><td>2026-04</td><td>48.68</td></tr>
           <tr><td>2026-05</td><td>54.46</td></tr>
           <tr><td>2026-06</td><td>60.26</td></tr>
-          <tr><td>2026-07</td><td>59.84</td></tr>
+          <tr><td>2026-07</td><td>59.43</td></tr>
         </tbody>
       </table>
     </div>
