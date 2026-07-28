@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Air Quality Dashboard</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 20px; background: #f5f5f5; }
+    .container { max-width: 1400px; margin: 0 auto; }
+    .header { background: white; border-radius: 10px; padding: 30px; margin-bottom: 30px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .header h1 { margin: 0 0 10px 0; color: #2c3e50; }
+    .header p { margin: 0; color: #7f8c8d; }
+    .section { background: white; border-radius: 10px; padding: 25px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .section h2 { margin: 0 0 20px 0; color: #34495e; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+    .section h3 { margin: 20px 0 10px 0; color: #34495e; }
+    .section-meta { margin: -8px 0 18px 0; color: #5f6c7b; }
+    .plot-description { margin: 0 0 8px 0; color: #5f6c7b; line-height: 1.45; }
+    img { max-width: 100%; height: auto; border-radius: 8px; margin: 15px 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+    .stat-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; }
+    .stat-card.timestamp { background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); }
+    .stat-card.temperature { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); }
+    .stat-card.humidity { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); }
+    .stat-card.co2 { background: linear-gradient(135deg, #27ae60 0%, #229954 100%); }
+    .stat-card.voc { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); }
+    .stat-card.nox { background: linear-gradient(135deg, #e67e22 0%, #d35400 100%); }
+    .stat-card h3 { margin: 0 0 5px 0; font-size: 0.9em; opacity: 0.9; }
+    .stat-card .value { font-size: 1.45em; font-weight: bold; line-height: 1.2; }
+    .stat-card .unit { font-size: 0.8em; opacity: 0.9; margin-top: 3px; }
+    .top-nav { margin-bottom: 15px; }
+    .back-button { display: inline-block; background: #2c3e50; color: white; text-decoration: none; padding: 10px 14px; border-radius: 6px; font-weight: 600; }
+    .back-button:hover { background: #1f2d3a; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-nav"><a href="index.html" class="back-button">&larr; Back to Home</a></div>
+    <div class="header">
+      <h1>🌬️ Air Quality Dashboard</h1>
+      <p>Laboratory air quality monitoring • Generated 2026-07-28 16:53:30</p>
+    </div>
+    <div class="section">
+      <h2>-1_025 Lab (PAM Group)</h2>
+      <p class="section-meta">Data points: 31</p>
+      <div class="stats-grid">
+        <div class="stat-card timestamp"><h3>Latest Timestamp</h3><div class="value">2026-07-28 16:52:45</div><div class="unit">Sensor reading time</div></div>
+        <div class="stat-card temperature"><h3>Temperature</h3><div class="value">26.49</div><div class="unit">C</div></div>
+        <div class="stat-card humidity"><h3>Humidity</h3><div class="value">48.26</div><div class="unit">%RH</div></div>
+        <div class="stat-card co2"><h3>CO2</h3><div class="value">401</div><div class="unit">ppm</div></div>
+        <div class="stat-card voc"><h3>VOC Index</h3><div class="value">28.0</div><div class="unit">index</div></div>
+        <div class="stat-card nox"><h3>NOx Index</h3><div class="value">1.0</div><div class="unit">index</div></div>
+      </div>
+      <h3>Temperature and Relative Humidity</h3>
+      <p class="plot-description">This plot tracks thermal comfort conditions over time. Sensirion IAQ guidance highlights that many occupants feel comfortable around 20-25 C and 40-60% RH, while persistently high temperature or humidity can worsen indoor air quality.</p>
+      <img src="sen66_lab1_sublab3_temp_rh.png" alt="Temperature and humidity plot" />
+      <h3>PM1 / PM2.5 / PM4 / PM10</h3>
+      <p class="plot-description">This plot compares particulate levels across size bands (PM1, PM2.5, PM4, PM10). The IAQ brochure notes that smaller particles penetrate deeper into the respiratory system, and PM2.5/PM10 are major contributors to indoor air health risk.</p>
+      <img src="sen66_lab1_sublab3_pm.png" alt="Particulate matter plot" />
+      <h3>CO2</h3>
+      <p class="plot-description">This plot shows CO2 in ppm as a ventilation and occupancy proxy. Sensirion IAQ material references cognitive-performance impacts as CO2 rises, so sustained elevations can indicate a need for increased fresh-air exchange.</p>
+      <img src="sen66_lab1_sublab3_co2.png" alt="CO2 plot" />
+      <h3>VOC and NOx Index</h3>
+      <p class="plot-description">These are Sensirion relative index signals (not direct concentration): VOC Index is referenced to recent history with a baseline near 100, and NOx Index with a baseline near 1, each on a 1-500 scale. Viewing both together helps distinguish air-quality events such as cleaning/cooking, outdoor infiltration, and fresh-air recovery.</p>
+      <img src="sen66_lab1_sublab3_voc_nox.png" alt="VOC and NOx plot" />
+    </div>
+  </div>
+</body>
+</html>
