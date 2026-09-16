@@ -43,14 +43,14 @@
     <div class="top-nav"><a href="index.html" class="back-button">&larr; Back to Home</a></div>
     <div class="header">
       <h1>⚡ Electricity Consumption Dashboard</h1>
-      <p>Daily electricity usage monitoring and analysis • Generated 2026-09-15 09:30:54</p>
+      <p>Daily electricity usage monitoring and analysis • Generated 2026-09-16 08:31:55</p>
     </div>
     <div class="stats-grid">
       <div class="stat-card">
         <h3>Total Consumption</h3>
-        <div class="value">40782.7</div>
+        <div class="value">41005.8</div>
         <div class="unit">kWh</div>
-        <div class="subtext">Over 661 days</div>
+        <div class="subtext">Over 665 days</div>
       </div>
       <div class="stat-card yellow">
         <h3>Average Daily</h3>
@@ -65,13 +65,13 @@
       </div>
       <div class="stat-card green">
         <h3>Consumption Trend</h3>
-        <div class="value">-3.8%</div>
+        <div class="value">-3.7%</div>
         <div class="unit">linear-fit change</div>
-        <div class="subtext">from 2025-09-16 to 2026-09-13</div>
+        <div class="subtext">from 2025-09-17 to 2026-09-15</div>
       </div>
       <div class="stat-card orange">
         <h3>Idle Power Percentage</h3>
-        <div class="value">461.2%</div>
+        <div class="value">139.0%</div>
         <div class="unit">of 7-day consumption</div>
       </div>
       <div class="stat-card teal">
@@ -84,16 +84,19 @@
     <div class="section">
       <h2>Day View</h2>
       <div class="summary">
-        <p><strong>Date:</strong> 2026-09-14</p>
-        <p><strong>Consumption:</strong> 0.0 kWh</p>
-        <p><strong>Change vs previous recorded day:</strong> +0.0 kWh</p>
+        <p><strong>Date:</strong> 2026-09-15</p>
+        <p><strong>Consumption:</strong> 59.1 kWh</p>
+        <p><strong>Change vs previous recorded day:</strong> +0.3 kWh</p>
       </div>
       <img src="electricity_consumption_previous_day.png" alt="Previous day power consumption" />
+      <h3>Presence vs Delta Clusters</h3>
+      <p><em>Points are local extrema above the noise threshold. Up/down markers indicate positive/negative deltas; color and label indicate DBSCAN clusters built from both delta magnitude and lab presence.</em></p>
+      <img src="electricity_consumption_previous_day_cluster_presence_delta.png" alt="Presence vs delta DBSCAN clusters" />
     </div>
     <div class="section">
       <h2>Week View</h2>
       <div class="summary">
-        <p><strong>Idle Power (1am-5am average):</strong> 3.89 kW</p>
+        <p><strong>Idle Power (1am-5am average):</strong> 2.70 kW</p>
         <p>The graph shows average power (kW) calculated from minute-level energy consumption data (kWh).</p>
         <p>Total power and active power (with idle power subtracted) help identify when equipment is actively being used vs. baseline consumption.</p>
       </div>
@@ -105,17 +108,17 @@
       <div class="stats-grid">
         <div class="stat-card teal">
           <h3>Kettles Boiled</h3>
-          <div class="value">617.0</div>
+          <div class="value">616.6</div>
           <div class="unit">full kettles per day</div>
         </div>
         <div class="stat-card">
           <h3>EV Miles</h3>
-          <div class="value">185.1</div>
+          <div class="value">185.0</div>
           <div class="unit">miles per day</div>
         </div>
         <div class="stat-card yellow">
           <h3>Blue Whale Lifts</h3>
-          <div class="value">150.5</div>
+          <div class="value">150.4</div>
           <div class="unit">1 m lifts per day</div>
         </div>
       </div>
@@ -157,7 +160,7 @@
           <tr><td>2026-06</td><td>60.26</td></tr>
           <tr><td>2026-07</td><td>61.56</td></tr>
           <tr><td>2026-08</td><td>61.06</td></tr>
-          <tr><td>2026-09</td><td>57.31</td></tr>
+          <tr><td>2026-09</td><td>56.87</td></tr>
         </tbody>
       </table>
     </div>
